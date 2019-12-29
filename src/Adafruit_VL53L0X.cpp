@@ -61,8 +61,14 @@ boolean Adafruit_VL53L0X::begin(uint8_t i2c_addr, boolean debug, TwoWire *i2c) {
   pMyDevice->comms_type      =  1;
   pMyDevice->comms_speed_khz =  400;
   pMyDevice->i2c = i2c;
-
-  pMyDevice->i2c->begin();     // VL53L0X_i2c_init();
+  
+  if(VL53L0X_Dev_i2c == 1)
+  {
+	  pMyDevice->i2c->begin(VL53L0X_Dev_sda, VL53L0X_Dev_scl);     // VL53L0X_i2c_init(); 0x29
+  }
+  else{
+	  pMyDevice->i2c->begin();     // VL53L0X_i2c_init(); 0x29
+  }
 
   // unclear if this is even needed:
   if( VL53L0X_IMPLEMENTATION_VER_MAJOR != VERSION_REQUIRED_MAJOR ||
@@ -176,6 +182,12 @@ boolean Adafruit_VL53L0X::begin(uint8_t i2c_addr, boolean debug, TwoWire *i2c) {
 
       return false;
   }
+}
+
+boolean Adafruit_VL53L0X::setAddress(int sda, int scl) {
+	VL53L0X_Dev_i2c = 1;
+	VL53L0X_Dev_sda = sda;
+	VL53L0X_Dev_scl = scl;
 }
 
 /**************************************************************************/

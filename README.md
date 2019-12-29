@@ -1,6 +1,7 @@
 Connect VL53L0X with Development Boards such as ESP32
 
 # VL53L0X       ESP32
+
 VCC           VCC / 3.3V
 GND           GND
 SCL           IO16

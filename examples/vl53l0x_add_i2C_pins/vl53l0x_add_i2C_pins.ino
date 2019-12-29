@@ -17,7 +17,7 @@ void setup() {
   
   Serial.println("Adafruit VL53L0X test");
   
-  lox.setAddress(17,16);
+  lox.setAddress(17,16); //define sda and scl pins
   
   if (!lox.begin()) {
     Serial.println(F("Failed to boot VL53L0X"));
